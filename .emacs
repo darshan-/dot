@@ -7,6 +7,9 @@
 (fringe-mode '(0 . 1))
 (setq-default indent-tabs-mode nil)
 
+;Set window title to buffer name
+(setq frame-title-format "%b")
+
 ;(set-default-font "Source Code Pro")
 ;(set-face-attribute 'default nil :font "Source Code Pro" :height 100 :weight 'medium)
 ;(set-face-font 'default "Source Code Pro")
