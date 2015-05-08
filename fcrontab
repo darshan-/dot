@@ -1,0 +1,6 @@
+2015-05-07 22:06:24  INFO listing darshan's fcrontab
+MAILTO=""
+
+# Mins Hours Days Months Weekdays Command
+  *    *     *    *      *        sudo -i -u darshan ath-uncrash
+  1    *     *    *      *        sudo -i -u darshan /home/darshan/ath/bin/backup_db.sh
