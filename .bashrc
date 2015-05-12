@@ -5,6 +5,7 @@ export HISTSIZE=99999
 export HISTFILESIZE=99999
 export HISTCONTROL=ignoreboth
 export RI="--format ansi"
+export LESS="-R"
 
 #export GOROOT=~/software/go/
 #export GOPATH=~/src/go
@@ -18,14 +19,12 @@ export PATH=$PATH:~/bin:/home/darshan/software/jruby-1.5.6/bin:$ANDROID_HOME/too
 
 #:$GOROOT/bin
 
-export ANDROID_JAVA_HOME=/opt/sun-jdk-1.6.0.26/
-
 #unset RUBYOPT
 
 export EIX_LIMIT=0
 
-## This loads RVM into a shell session.
-#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# This loads RVM into a shell session.
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 function wn() {
   if [ "X" = "X$1" ]; then
@@ -73,6 +72,7 @@ alias wr="cd ~/ged-home/Desktop/Writing/"
 alias sc="cd ~/ged-home/Desktop/Writing/School/"
 
 alias  bi="cd ~/src/android/BI_on_googlecode.com/default"
+alias 398="cd ~/Downloads/SOC\ 398"
 alias  ah="cd ~/src/app-engine/amalgamandhealth.com"
 alias svt="cd ~/src/android/spanish-vocabulary-trainer/"
 
