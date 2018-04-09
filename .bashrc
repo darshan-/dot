@@ -13,7 +13,10 @@ export HISTFILESIZE=99999
 export HISTCONTROL=ignoreboth
 export RI="--format ansi"
 export LESS="-R -M"
+<<<<<<< HEAD
 export EDITOR=emacs
+=======
+>>>>>>> aa82cdc44ac95dee20dd70cc77e863acfc95679f
 
 export MAKEFLAGS="-j12"
 
@@ -23,10 +26,13 @@ export ANDROID_HOME=/opt/android-sdk
 
 export CLOUDSDK_PYTHON=/usr/bin/python2.7
 
+<<<<<<< HEAD
 # For emacs (and maybe others) warning:
 #  ** (emacs:17298): WARNING **: Couldn't register with accessibility bus: Did not receive a reply. ...
 export NO_AT_BRIDGE=1
 
+=======
+>>>>>>> aa82cdc44ac95dee20dd70cc77e863acfc95679f
 export PATH=$PATH:/opt/calibre:~/software/google-cloud-sdk/bin:~/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$(ruby -e "puts Gem.user_dir")/bin:~/node_modules/firebase/bin
 
 function ok() {
