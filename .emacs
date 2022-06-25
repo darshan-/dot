@@ -5,6 +5,17 @@
 ;; 	  (message "Would garbage collect. Probably you want to quit emacs."))
 ;; (setq garbage-collection-messages t)
 
+;; (add-hook 'after-change-major-mode-hook
+;;           (lambda()
+;;             (electric-indent-mode -1)
+;;             (local-set-key (kbd "RET") 'newline-and-indent)
+;;             ))
+
+(add-hook 'after-change-major-mode-hook
+          (lambda()
+            (setq-local electric-indent-chars '(?\n ?}))
+            ))
+
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://stable.melpa.org/packages/"))
@@ -20,19 +31,28 @@
 ;Set window title to buffer name
 (setq frame-title-format "%b")
 
-(set-default-font "Source Code Pro")
+;;;(set-default-font "Source Code Pro")
 ;(set-face-attribute 'default nil :font "Source Code Pro" :height 100 :weight 'normal)
 ;(set-face-attribute 'default nil :font "Liberation Mono" :height 100 :weight 'normal)
-(set-face-attribute 'default nil :font "Source Code Pro" :height 100 :weight 'medium :foreground "black")
+;;;(set-face-attribute 'default nil :font "Source Code Pro" :height 100 :weight 'medium :foreground "black")
 ;(set-face-attribute 'default nil :font "Source Code Pro Medium" :height 100 :weight 'medium)
 ;(set-face-attribute 'default nil :font "Source Code Pro" :height 100 :weight 'semi-bold)
-(set-face-font 'default "Source Code Pro")
+;;;(set-face-font 'default "Source Code Pro")
 
 (global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
 
 (add-hook 'java-mode-hook
           '(lambda ()
              (local-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)))
+
+;;(add-hook 'c-mode-hook (lambda () (setq comment-start "//"
+;;                                        comment-end   "")))
+
+(add-hook 'c-mode-hook '(lambda ()
+                          (c-toggle-comment-style -1)
+                          (local-set-key (kbd "C-c C-c")
+                                         'comment-or-uncomment-region)
+                          ))
 
 ;; (add-hook 'java-mode-hook
 ;;           '(lambda () "Treat Java 1.5 @-style annotations as comments."
@@ -89,7 +109,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (web-mode s groovy-mode go-mode dart-mode))))
+ '(package-selected-packages '(nasm-mode rust-mode swift-mode epl groovy-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -115,3 +135,17 @@
   (darshan-not-C-g-is-confirm "Quit emacs?"))
 
 (setq confirm-kill-emacs 'my-kill-emacs)
+
+(defun my-web-mode-hook ()
+  ;(setq web-mode-enable-auto-pairing nil)
+  (setq web-mode-enable-auto-closing nil)
+  )
+(add-hook 'web-mode-hook  'my-web-mode-hook)
+
+
+;(eval-after-load "web-mode"
+;  '(setq web-mode-tag-auto-close-style 0))
+
+(add-to-list 'auto-mode-alist '("\\.\\(asm\\|s\\)$" . nasm-mode))
+
+(put 'overwrite-mode 'disabled t)
