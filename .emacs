@@ -5,16 +5,23 @@
 ;; 	  (message "Would garbage collect. Probably you want to quit emacs."))
 ;; (setq garbage-collection-messages t)
 
-;; (add-hook 'after-change-major-mode-hook
-;;           (lambda()
-;;             (electric-indent-mode -1)
-;;             (local-set-key (kbd "RET") 'newline-and-indent)
-;;             ))
-
 (add-hook 'after-change-major-mode-hook
           (lambda()
-            (setq-local electric-indent-chars '(?\n ?}))
+            (electric-indent-mode -1)
+            (local-set-key [return] 'newline-and-indent)
+            (local-set-key (kbd "}")
+                           (lambda()
+                             (interactive)
+                             (insert-char ?})
+                             (indent-for-tab-command)
+                             ))
+            (define-key minibuffer-local-map [return] "\n")
             ))
+
+;; (add-hook 'after-change-major-mode-hook
+;;           (lambda()
+;;             (setq-local electric-indent-chars '(?\n ?}))
+;;             ))
 
 (require 'package)
 (add-to-list 'package-archives
