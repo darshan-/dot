@@ -5,6 +5,14 @@
 ;; 	  (message "Would garbage collect. Probably you want to quit emacs."))
 ;; (setq garbage-collection-messages t)
 
+; Based on https://emacs.stackexchange.com/a/24521
+(defun get-line ()
+  (save-restriction
+    (widen)
+    (save-excursion
+      (buffer-substring-no-properties (line-beginning-position)
+                                      (line-end-position)))))
+
 (add-hook 'after-change-major-mode-hook
           (lambda()
             (electric-indent-mode -1)
@@ -13,7 +21,8 @@
                            (lambda()
                              (interactive)
                              (insert-char ?})
-                             (indent-for-tab-command)
+                             (if (string= (string-trim (get-line)) "}")
+                                 (indent-for-tab-command))
                              ))
             (define-key minibuffer-local-map [return] "\n")
             ))
